@@ -158,36 +158,36 @@ goodbye:
 ;=======================;
 
 ; Via LibPerspective: Trying To Get It To Work On VMU Hardware.
-;        .org    $54B
+.org    $54B
 ;Start:
-;        mov     #$a1, ocr
-;        mov     #%00001001, mcr
-;        mov     #$80, vccr
-;        mov     #$20, acc
-;        push    acc
-;
-;        mov     #$ff, p3
-;        mov     #$80, sp
-;        mov     #%10000000, ie
-;        clr1    psw, 3
-;        clr1    psw, 4
-;        mov     #$05, acc
-;        push    acc
-;
-;        mov     #$80, p1fcr
-;        clr1    p1,7
-;        mov     #$80, p1ddr
-;
-;        ; Disable battery check
-;        clr1    psw, 1
-;        mov     #$ff, $006E
-;        set1    psw, 1
-;
-;        ; ???
-;        ret
-;
-;        ; Initialise the p3_last_input
-;        mov     #%11111111, p3_last_input
+    mov     #$a1, ocr
+    mov     #%00001001, mcr
+    mov     #$80, vccr
+    mov     #$20, acc
+    push    acc
+
+    mov     #$ff, p3
+    mov     #$80, sp
+    mov     #%10000000, ie
+    clr1    psw, 3
+    clr1    psw, 4
+    mov     #$05, acc
+    push    acc
+
+    mov     #$80, p1fcr
+    clr1    p1,7
+    mov     #$80, p1ddr
+
+    ; Disable battery check
+    ; clr1    psw, 1
+    ; mov     #$ff, $006E
+    ; set1    psw, 1
+
+    ; ???
+    ret
+
+    ; Initialise the p3_last_input
+    mov     #%11111111, p3_last_input
 
 start:
     clr1    psw,1
@@ -307,6 +307,7 @@ Main_Loop:
 ;=======================;
 ; Handle Input
 ;=======================;
+    callf   Get_Input ; Ensure We Can Enter Sleep Mode + Exit App With The Mode Button.
     ld	p3
     bn  acc, T_BTN_UP1, .GoTo_Options
     bn  acc, T_BTN_DOWN1, .GoTo_Options
@@ -345,6 +346,7 @@ Main_Loop:
     dec button_interrupt
 .skip_button_interrupt_decrement
 ; Handle Input
+    callf   Get_Input ; Ensure We Can Enter Sleep Mode + Exit App With The Mode Button.
     ld  button_interrupt
     bnz  .cursor_choice_language    ; Skip Options Input Check If The Interrupt Is Enabled, To Prevent The Cursor From Flying Everywhere
 .check_options_up    
@@ -791,6 +793,7 @@ Merry_Christmas_Loop:
     P_Draw_Background_Constant BuonNatale_2
     ; jmpf    .MC_Loop
 .MC_Loop
+    callf   Get_Input ; Ensure We Can Enter Sleep Mode + Exit App With The Mode Button.
     P_Blit_Screen
     ; jmpf    start
 jmpf    Merry_Christmas_Loop
