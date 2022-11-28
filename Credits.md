@@ -1,22 +1,24 @@
 # Credits And Many Thanks To:
 + Kresna Susila,
-      + For LibPerspective,
+  + For LibPerspective,
 + Walter Tetzner, 
-      + For WaterBear,
+  + For WaterBear,
 + Falco Girgis,   
-      + For ElysianVMU,
+  + For ElysianVMU,
 + Dmitry Grinberg,
-      + For VMU.PDF + VMU Resources
+  + For VMU.PDF + VMU Resources
 + Marcus Comstedt,
-      + For Tetris.S & Dreamcast Programming Resources,
+  + For Tetris.S & Dreamcast Programming Resources,
 + Sebastian Mihai,
-      + For RainingSquares
+  + For RainingSquares
 + Tyco, 
-      + For Chao Editor VMI File,
+  + For Chao Editor VMI File,
 + Speud,
-      + For VMU Tool/Dream Explorer,
+  + For VMU Tool/Dream Explorer,
 + RetroOnyx,
-      + For The Coder's Cable,
+  + For The Coder's Cable,
++ MarkDownGuide.Com,
+  + For The .MD File Syntax,
 + And Many More (Plus Anyone I've forgotten to list!).
 + And You,        
-      + For Playing!
+  + For Playing!
