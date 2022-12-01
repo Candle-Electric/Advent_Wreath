@@ -256,7 +256,15 @@ start:
     ; mov #15, candle5_spr_flags
 	 
     ; Read The Hour. If It's <5 P.M. < Here < 6:40 A.M. Or 7 >, Use The NightTime BackGround.
-.check_internal_time  
+.check_internal_time  	 
+    ; Read The Hour. If It's <5 P.M. < Here < 6:40 A.M. Or 7 >, Use The NightTime BackGround.
+.check_january
+    ; Check If It's January:
+    ld  current_month
+    sub #1
+    bnz .check_november_december
+    mov #7, candle5_spr_flags
+.check_november_december
     ld    current_month
     sub   #11
     bp    acc, 7, .check_internal_time_day
@@ -348,7 +356,7 @@ Main_Loop:
 ; Handle Input
     callf   Get_Input ; Ensure We Can Enter Sleep Mode + Exit App With The Mode Button.
     ld  button_interrupt
-    bnz  .cursor_choice_language    ; Skip Options Input Check If The Interrupt Is Enabled, To Prevent The Cursor From Flying Everywhere
+    bnz  .check_options_buttons ; .cursor_choice_language    ; Skip Options Input Check If The Interrupt Is Enabled, To Prevent The Cursor From Flying Everywhere
 .check_options_up    
     ld  p3
     bp  acc, T_BTN_UP1, .check_options_down
@@ -368,10 +376,12 @@ Main_Loop:
     clr1    options_flags, 0
     mov     #0, acc
 .options_not_b 
-    callf	Get_Input
-    mov #Button_A, acc
-    callf   Check_Button_Pressed
-    bz  .cursor_choice_language
+    ; callf	Get_Input
+    ; mov #Button_A, acc
+    ; callf   Check_Button_Pressed
+    ; bz  .cursor_choice_language
+    ld  p3
+    bp  acc, T_BTN_A1, .cursor_choice_language
      mov     #255, acc
     clr1    options_flags, 0
 .exit_options
