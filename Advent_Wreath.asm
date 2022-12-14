@@ -255,7 +255,7 @@ start:
     st options_graphic_sprite_address+1
     ; mov #15, candle5_spr_flags
 	 
-    ; Read The Hour. If It's <5 P.M. < Here < 6:40 A.M. Or 7 >, Use The NightTime BackGround.
+    ; ToDo: Expand This Functionality To Work In Any Year, Using The Calendar/Day Of The Week (It's Currently Doing Just The Dates For 2022.).
 .check_internal_time  	 
     ; Read The Hour. If It's <5 P.M. < Here < 6:40 A.M. Or 7 >, Use The NightTime BackGround.
 .check_january
